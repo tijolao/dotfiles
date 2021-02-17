@@ -3,9 +3,6 @@ if not pcall(require, 'vimp') then
    return
 end
 
-print('barbar conf')
-
-
 -- Magic buffer-picking mode
 vimp.nnoremap({'silent'}, '<C-s>', [[ :BufferPick<CR> ]])
 -- Sort automatically by...

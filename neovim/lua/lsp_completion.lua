@@ -3,9 +3,6 @@ if not pcall(require, 'vimp') then
    return
 end
 
-vim.o.shortmess = vim.o.shortmess .. 'c'
-vim.o.completeopt = "menuone,noselect,noinsert"
-vim.o.infercase = true
 -- Function to check if there is a space behind de cursor
 local function check_back_space()
     local col = vim.fn.col'.' - 1
@@ -21,7 +18,7 @@ vimp.inoremap({'silent', 'expr'}, '<Tab>', function()
     elseif check_back_space() then
         return [[<Tab>]]
     else
-        return vim.fn['completion#trigger_completion']()
+        return vim.fn['compe#complete']()
     end
 end)
 
@@ -33,3 +30,25 @@ vimp.inoremap({'expr'}, '<S-Tab>', function()
         return [[<S-Tab>]]
     end
 end)
+
+
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  allow_prefix_unmatch = false;
+
+  source = {
+    path = true;
+    buffer = true;
+    vsnip = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    your_awesome_source = {};
+  };
+}
