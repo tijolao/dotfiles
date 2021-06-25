@@ -5,6 +5,7 @@ local on_attach = function(_, bufnr)
 	-- require'diagnostic'.on_attach()
 	-- require'completion'.on_attach()
 	local opts = { noremap=true, silent=true }
+	require'lsp_signature'.on_attach()
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
